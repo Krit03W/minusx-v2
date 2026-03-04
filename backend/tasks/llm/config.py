@@ -3,8 +3,8 @@
 import os
 
 # MODEL LIST 19-02-2026
-CODING_MODEL = "claude-sonnet-4-6"
-SUMMARIZE_FILTER_MODEL = "gpt-5-mini-2025-08-07"
+CODING_MODEL = "gemini-2.5-pro"
+SUMMARIZE_FILTER_MODEL = "gemini-2.5-flash"
 
 # Model configurations
 DEFAULT_MODEL = CODING_MODEL
