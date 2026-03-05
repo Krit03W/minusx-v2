@@ -3,8 +3,10 @@
 import os
 
 # MODEL LIST 19-02-2026
-CODING_MODEL = "gemini-2.5-pro"
-SUMMARIZE_FILTER_MODEL = "gemini-2.5-flash"
+# Use "gemini/" prefix so LiteLLM routes via Google AI Studio (GEMINI_API_KEY)
+# Without prefix, LiteLLM assumes Vertex AI and requires Application Default Credentials
+CODING_MODEL = "gemini/gemini-2.5-pro"
+SUMMARIZE_FILTER_MODEL = "gemini/gemini-2.5-flash"
 
 # Model configurations
 DEFAULT_MODEL = CODING_MODEL
