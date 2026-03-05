@@ -19,8 +19,15 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from root .env file (shared with frontend)
+# Looks for .env in: root/ -> backend/ (fallback for backward compatibility)
+import os as _os
+_root_env = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..', '.env')
+_local_env = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '.env')
+if _os.path.exists(_root_env):
+    load_dotenv(_root_env)
+else:
+    load_dotenv(_local_env)
 
 from connection_manager import connection_manager
 from connectors import get_async_connector

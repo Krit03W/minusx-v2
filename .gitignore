@@ -13,3 +13,12 @@ data/csv_connections
 
 *.DS_Store
 experiments
+
+# Environment files (keep .env.example as template, ignore actual .env with secrets)
+.env
+.env.local
+frontend/.env
+backend/.env
+!.env.example
+!frontend/.env.example
+!backend/.env.example

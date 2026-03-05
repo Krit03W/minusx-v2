@@ -5,8 +5,9 @@ services:
       dockerfile: Dockerfile
     container_name: minusx-backend
     restart: unless-stopped
-    # Backend only accessible via Docker internal network (not exposed to host)
-    # Frontend communicates with backend via http://backend:8001
+    ports:
+      - "8888:8001"  # Exposed to host for debugging/direct access
+    # Frontend communicates with backend via http://backend:8001 (internal Docker network)
     volumes:
       - ./data:/app/data
     environment:
@@ -15,7 +16,7 @@ services:
       - BASE_DUCKDB_DATA_PATH=/app
       - WORKERS=${WORKERS:-4}
     env_file:
-      - ./backend/.env
+      - ./.env
     networks:
       - minusx-network
     healthcheck:
@@ -32,7 +33,7 @@ services:
     container_name: minusx-frontend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3333:3000"
     volumes:
       - ./data:/app/data
       - atlas_documents:/app/atlas_documents
@@ -42,7 +43,7 @@ services:
       - BASE_DUCKDB_DATA_PATH=/app
       - ANALYTICS_DB_DIR=/app/data/analytics
     env_file:
-      - ./frontend/.env
+      - ./.env
     depends_on:
       backend:
         condition: service_healthy

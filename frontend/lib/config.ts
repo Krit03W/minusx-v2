@@ -32,7 +32,7 @@ function requireSecret(name: string, value: string | undefined): string {
   }
 
   if (!value || value.trim() === '') {
-    errors.push(`${name} is required but not set. Add it to frontend/.env`);
+    errors.push(`${name} is required but not set. Add it to root .env`);
     return '';
   }
   return value;
@@ -127,10 +127,10 @@ if (errors.length > 0 && !IS_TEST && !IS_BROWSER) {
     ...errors,
     '',
     'To fix this:',
-    '1. Copy frontend/.env.example to frontend/.env (if not already done)',
+    '1. Copy .env.example to .env at the project root (if not already done)',
     '2. Generate secret:',
     '   - NEXTAUTH_SECRET: openssl rand -base64 32',
-    '3. Add it to frontend/.env',
+    '3. Add it to the root .env file',
     '',
     'Example:',
     'NEXTAUTH_SECRET=<generated-secret-here>',
