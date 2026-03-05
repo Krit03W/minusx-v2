@@ -25,10 +25,15 @@ coverage/
 *.swo
 
 # Environment files
+# NOTE: .env is a symlink to root ../.env — Docker cannot resolve outside build context
+# All env vars are injected at runtime via docker-compose env_file
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.example
+.env.*
 
 # Logs
 *.log

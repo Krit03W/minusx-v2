@@ -46,9 +46,13 @@ Thumbs.db
 *.db-wal
 *.duckdb
 
-# Environment files
+# Environment files (injected at runtime via docker-compose env_file)
+# Do NOT include .env in Docker image - secrets should never be baked into images
+# The frontend/.env symlink would also break inside Docker build context
+.env
 .env.local
-.env.*.local
+.env.example
+.env.*
 
 # Documentation
 docs/
